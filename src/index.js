@@ -4,9 +4,9 @@ const PORT = 3000;
 const app = express();
 
 app.get("/test", (req, res) => {
-  res.send({ message: "welcome" });
+  res.send({ message: "welcome2" });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, () => {npm
   console.log(`App up and runing on port ${PORT}.`);
 });
