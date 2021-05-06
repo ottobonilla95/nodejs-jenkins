@@ -44,16 +44,9 @@ pipeline {
                     sh 'echo Getting lastest image version on server...'
 
                     withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        def remote = [:]
-                        remote.name = 'test'
-                        remote.host = '128.199.43.48'
-                        remote.user = USERNAME
-                        remote.password = PASSWORD
-                        remote.allowAnyHosts = true
-                        stage('Remote SSH') {
-                            writeFile file: 'abc.sh', text: 'ls -lrt'
-                            sshScript remote: remote, script: 'abc.sh'
-                        }
+                      
+                        sh 'echo $USERNAME'
+
                     }
                 }
             }
