@@ -27,25 +27,16 @@ pipeline {
                     }
                 }
             }
-        // sh "chmod +x -R ${env.WORKSPACE}"
-        // sh './jenkins/scripts/test.sh'
         }
 
         stage('Deliver') {
             steps {
                 sh 'echo Deliver........'
-            // sh './jenkins/scripts/release.sh'
-            // input message: 'Finished using the web site? (Click "Proceed" to continue)'
-            // sh './jenkins/scripts/kill.sh'
+                script {
+                    dockerImage.push()
+                    dockerImage.push('latest')
+                }
             }
         }
     }
 }
-
-// node {
-//     checkout scm
-//     def customImage = docker.build("my-image:${env.BUILD_ID}")
-//     customImage.push()
-
-//     customImage.push('latest')
-// }
