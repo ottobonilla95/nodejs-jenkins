@@ -1,4 +1,3 @@
-def app
 
 pipeline {
     agent {
@@ -9,12 +8,18 @@ pipeline {
     }
     environment {
         CI = 'true'
+        registry = 'ottobonilla95/nodejsjenknis'
+        registryCredential = 'git'
+        dockerImage = ''
     }
+
     stages {
         stage('Build') {
             steps {
                 // sh 'npm install'
-                app = docker.build('ottobonilla95/nodejsjenkins')
+                script {
+                    dockerImage = docker.build("ottobonilla95/nodejsjenkins" + ":$BUILD_NUMBER")
+                }
             }
         }
         stage('Test') {
@@ -32,3 +37,11 @@ pipeline {
         }
     }
 }
+
+// node {
+//     checkout scm
+//     def customImage = docker.build("my-image:${env.BUILD_ID}")
+//     customImage.push()
+
+//     customImage.push('latest')
+// }
