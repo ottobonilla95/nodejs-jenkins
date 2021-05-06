@@ -21,7 +21,9 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside {
-                        sh 'echo testing..................'
+                        sh 'cd /usr/src/app'
+                        sh 'ls'
+                        sh 'npm run test'
                     }
                 }
             }
