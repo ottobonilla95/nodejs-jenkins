@@ -6,7 +6,7 @@ pipeline {
         registry = 'ottobonilla95/nodejsjenknis'
         registryCredential = 'github'
         dockerImage = ''
-        remote = [:]
+        
     }
 
     stages {
@@ -53,7 +53,7 @@ pipeline {
                         // or inside double quotes for string interpolation
                         echo "username is $USERNAME"
                     }
-
+                    def remote = [:]
                     remote.name = 'test'
                     remote.host = '128.199.43.48'
                     remote.user = $USERNAME
