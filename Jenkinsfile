@@ -48,8 +48,8 @@ pipeline {
                         def remote = [:]
                         remote.name = 'test'
                         remote.host = '128.199.43.48'
-                        remote.user = $USERNAME
-                        remote.password = $PASSWORD
+                        remote.user = USERNAME
+                        remote.password = PASSWORD
                         remote.allowAnyHosts = true
                     }
 
