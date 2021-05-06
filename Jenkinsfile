@@ -46,6 +46,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'digitalocean', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                       
                         sh 'echo $USERNAME'
+                        sh 'ssh $USERNAME@128.199.43.48 -p $PASSWORD'
 
                     }
                 }
