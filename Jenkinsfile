@@ -16,10 +16,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo hola'
-                // script {
-                //     dockerImage = docker.build("ottobonilla95/nodejsjenkins" + ":$BUILD_NUMBER")
-                // }
+                // sh 'npm install'
+                script {
+                    dockerImage = docker.build('ottobonilla95/nodejsjenkins' + ":$BUILD_NUMBER")
+                }
             }
         }
         stage('Test') {
@@ -30,6 +30,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'echo Deliver........'
             // sh './jenkins/scripts/release.sh'
             // input message: 'Finished using the web site? (Click "Proceed" to continue)'
             // sh './jenkins/scripts/kill.sh'
