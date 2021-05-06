@@ -43,7 +43,7 @@ pipeline {
 
                     sh 'echo Getting lastest image version on server...'
 
-                    withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'digitalocean', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                       
                         sh 'echo $USERNAME'
 
