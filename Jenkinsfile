@@ -31,9 +31,9 @@ pipeline {
         //     }
         // }
 
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                sh 'Deploying image'
+                sh 'echo Deploying....'
                 script {
                     sh 'Pushing to docker hub...'
 
