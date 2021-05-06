@@ -6,7 +6,6 @@ pipeline {
         registry = 'ottobonilla95/nodejsjenknis'
         registryCredential = 'github'
         dockerImage = ''
-        
     }
 
     stages {
@@ -45,14 +44,7 @@ pipeline {
                     sh 'echo Getting lastest image version on server...'
 
                     withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        // available as an env variable, but will be masked if you try to print it out any which way
-                        // note: single quotes prevent Groovy interpolation; expansion is by Bourne Shell, which is what you want
-                        sh 'echo $PASSWORD'
-                        // also available as a Groovy variable
-                        echo USERNAME
-                        // or inside double quotes for string interpolation
-                        echo "username is $USERNAME"
-                        
+
                         def remote = [:]
                         remote.name = 'test'
                         remote.host = '128.199.43.48'
@@ -60,11 +52,11 @@ pipeline {
                         remote.password = $PASSWORD
                         remote.allowAnyHosts = true
                     }
-                  
-                    // stage('Remote SSH') {
-                    //     writeFile file: 'abc.sh', text: 'ls -lrt'
-                    //     sshScript remote: remote, script: 'abc.sh'
-                    // }
+
+                // stage('Remote SSH') {
+                //     writeFile file: 'abc.sh', text: 'ls -lrt'
+                //     sshScript remote: remote, script: 'abc.sh'
+                // }
                 }
             }
         }
