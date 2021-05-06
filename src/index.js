@@ -4,7 +4,7 @@ const PORT = 3005;
 const app = express();
 
 app.get("/test", (req, res) => {
-  res.send({ message: "welcome" });
+  res.send({ message: "welcome, with jenkins" });
 });
 
 app.listen(PORT, () => {
