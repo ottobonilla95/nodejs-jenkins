@@ -4,7 +4,7 @@ pipeline {
     environment {
         CI = 'true'
         registry = 'ottobonilla95/nodejsjenknis'
-        registryCredential = 'git'
+        registryCredential = 'github'
         dockerImage = ''
     }
 
@@ -33,8 +33,10 @@ pipeline {
             steps {
                 sh 'echo Deliver........'
                 script {
-                    dockerImage.push()
-                    dockerImage.push('latest')
+                        docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                            dockerImage.push('latest')
+                        }
                 }
             }
         }
