@@ -19,10 +19,16 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "chmod +x -R ${env.WORKSPACE}"
-                sh './jenkins/scripts/test.sh'
+                script {
+                    dockerImage.inside {
+                        sh 'echo testing..................'
+                    }
+                }
             }
+        // sh "chmod +x -R ${env.WORKSPACE}"
+        // sh './jenkins/scripts/test.sh'
         }
+
         stage('Deliver') {
             steps {
                 sh 'echo Deliver........'
