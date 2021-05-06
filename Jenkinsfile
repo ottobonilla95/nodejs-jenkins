@@ -17,9 +17,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo hola'
-                script {
-                    dockerImage = docker.build("ottobonilla95/nodejsjenkins" + ":$BUILD_NUMBER")
-                }
+                // script {
+                //     dockerImage = docker.build("ottobonilla95/nodejsjenkins" + ":$BUILD_NUMBER")
+                // }
             }
         }
         stage('Test') {
