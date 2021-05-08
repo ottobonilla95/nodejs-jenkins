@@ -24,7 +24,6 @@ pipeline {
                 script {
                     dockerImage.inside {
                         sh 'cd /usr/src/app'
-                        sh 'ls'
                         sh 'npm run test'
                     }
                 }

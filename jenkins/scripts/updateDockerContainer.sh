@@ -21,7 +21,7 @@ docker pull $IMAGE_NAME
 
 # run image
 echo "Running image...."
-docker run -p 3005:3005 -d $IMAGE_NAME
+docker run -p 3000:3005 -d $IMAGE_NAME
 
 # End
 echo "Docker tasks completed :)"
