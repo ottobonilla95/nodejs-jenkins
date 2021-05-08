@@ -1,4 +1,4 @@
-set -ex
+set -e
 
 # image name
 IMAGE_NAME="ottobonilla95/nodejsjenkins"
