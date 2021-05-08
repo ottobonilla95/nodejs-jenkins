@@ -2,17 +2,23 @@
 IMAGE_NAME="ottobonilla95/nodejsjenkins"
 
 # stop container
-echo "stoping container"
+echo "Stoping container.."
 docker stop $(docker ps -q --filter ancestor=$IMAGE_NAME )
 
 # # delete container
-# docker rm $(docker ps -q --filter ancestor=$IMAGE_NAME )
+echo "Deleting container..."
+docker rm $(docker ps -q --filter ancestor=$IMAGE_NAME )
 
 # # delete image
-# docker rmi $(docker images  --filter reference=$IMAGE_NAME  --format "{{.ID}}" )
+echo "Deleting image..."
+docker rmi $(docker images  --filter reference=$IMAGE_NAME  --format "{{.ID}}" )
 
 # # get lastest image
-# docker pull $IMAGE_NAME
+echo "Getting the last version..."
+docker pull $IMAGE_NAME
 
 # # run image
-# docker run -p 3005:3005 $IMAGE_NAME
+echo "Running image..."
+docker run -p 3005:3005 -d $IMAGE_NAME
+
+echo "Docker tasks completed :)"
