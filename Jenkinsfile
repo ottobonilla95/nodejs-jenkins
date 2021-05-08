@@ -50,10 +50,10 @@ pipeline {
                         remote.user = USERNAME
                         remote.password = PASSWORD
                         remote.allowAnyHosts = true
-                        stage('Remote SSH') {
-                            writeFile file: 'abc.sh', text: 'ls -lrt'
-                            sshScript remote: remote, script: 'abc.sh'
-                        }
+                        // stage('Remote SSH') {
+                            // writeFile file: 'abc.sh', text: 'ls -lrt'
+                        sshScript remote: remote, script: 'jenkins/scripts/getLastestDockerImage.sh'
+                        // }
 
                         // sh 'echo $USERNAME'
                         // sh 'ssh $USERNAME@128.199.43.48 -p $PASSWORD'
