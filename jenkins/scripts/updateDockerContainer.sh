@@ -1,3 +1,5 @@
+set -ex
+
 # image name
 IMAGE_NAME="ottobonilla95/nodejsjenkins"
 
