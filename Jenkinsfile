@@ -9,26 +9,26 @@ pipeline {
     }
 
     stages {
-        // stage('Build') {
-        //     sh 'Building image...'
-        //     steps {
-        //         script {
-        //             dockerImage = docker.build('ottobonilla95/nodejsjenkins' + ":$BUILD_NUMBER")
-        //         }
-        //     }
-        // }
-        // stage('Test') {
-        //     steps {
-        //         sh 'Testing...'
-        //         script {
-        //             dockerImage.inside {
-        //                 sh 'cd /usr/src/app'
-        //                 sh 'ls'
-        //                 sh 'npm run test'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            sh 'Building image...'
+            steps {
+                script {
+                    dockerImage = docker.build('ottobonilla95/nodejsjenkins' + ":$BUILD_NUMBER")
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'Testing...'
+                script {
+                    dockerImage.inside {
+                        sh 'cd /usr/src/app'
+                        sh 'ls'
+                        sh 'npm run test'
+                    }
+                }
+            }
+        }
 
         stage('Deploy') {
             steps {
@@ -36,10 +36,10 @@ pipeline {
                 script {
                     sh 'echo Pushing to docker hub...'
 
-                    // docker.withRegistry( '', registryCredential ) {
-                    //     dockerImage.push()
-                    //     dockerImage.push('latest')
-                    // }
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                        dockerImage.push('latest')
+                    }
 
                     sh 'echo Getting lastest image version on server...'
 
