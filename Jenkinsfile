@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'Building image...'
+                sh 'echo Building image...'
 
                 script {
                     dockerImage = docker.build('ottobonilla95/nodejsjenkins' + ":$BUILD_NUMBER")
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'Testing...'
+                sh 'echo Testing...'
                 script {
                     dockerImage.inside {
                         sh 'cd /usr/src/app'
