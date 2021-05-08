@@ -2,7 +2,7 @@ set -ex
 
 # image name
 IMAGE_NAME="ottobonilla95/nodejsjenkins"
-$(docker ps -q --filter ancestor=ottobonilla95/nodejsjenkins )
+
 # stop container
 echo "Stoping container.."
 docker stop $(docker ps -q --filter ancestor=$IMAGE_NAME )
