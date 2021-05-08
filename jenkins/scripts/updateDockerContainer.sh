@@ -42,7 +42,7 @@ IMAGE_ID=$(docker images  --filter reference=$IMAGE_NAME  --format "{{.ID}}" )
 if [ $IMAGE_ID ]
 then
     set -x
-    docker rmi IMAGE_ID
+    docker rmi $IMAGE_ID
     set +x
     echo "Image deleted."
 else
