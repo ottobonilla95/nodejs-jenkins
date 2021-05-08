@@ -11,7 +11,11 @@ CONTAINER_ID=$(docker ps -q --filter ancestor=$IMAGE_NAME )
 if [ $CONTAINER_ID ]
 then
     docker stop CONTAINER_ID
+    echo "Containter stopped."
+else
+    echo "Containter not found."
 fi
+
 
 # delete container
 echo "Deleting container...."
@@ -21,6 +25,9 @@ CONTAINER_ID=$(docker ps --all -q --filter ancestor=$IMAGE_NAME )
 if [ $CONTAINER_ID ]
 then
     docker rm CONTAINER_ID
+    echo "Containter deleted."
+else
+    echo "Containter not found."
 fi
 
 # delete image
@@ -30,6 +37,9 @@ IMAGE_ID=$(docker images  --filter reference=$IMAGE_NAME  --format "{{.ID}}" )
 if [ $IMAGE_ID ]
 then
     docker rmi IMAGE_ID
+    echo "Image deleted."
+else
+    echo "Image not found."
 fi
 
 # get lastest image
