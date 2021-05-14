@@ -17,12 +17,10 @@ pipeline {
 
                     sshagent (credentials: ['bartrcashEC2']) {
                         sh 'ssh -o StrictHostKeyChecking=no -l ubuntu ec2-52-90-133-116.compute-1.amazonaws.com uname -a'
+                        sh 'ls'
                     }
 
-                    // sshagent(credentials : ['bartrcashEC2']) {
-                    //             sh 'ssh -o StrictHostKeyChecking=no user@ec2-52-90-133-116.compute-1.amazonaws.com uptime'
-                    //             sh 'ssh -v user@ec2-52-90-133-116.compute-1.amazonaws.com'
-                    // }
+                 
                 }
             }
         }
