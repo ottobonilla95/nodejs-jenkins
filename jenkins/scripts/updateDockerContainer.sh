@@ -66,5 +66,5 @@
 
 
 echo "Holaaa..."
-pwd
-ls
+sudo pwd
+sudo ls
