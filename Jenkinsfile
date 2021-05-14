@@ -9,26 +9,6 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'echo Building image...'
-
-                script {
-                    dockerImage = docker.build('ottobonilla95/nodejsjenkins' + ":$BUILD_NUMBER")
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo Testing...'
-                script {
-                    dockerImage.inside {
-                        sh 'cd /usr/src/app'
-                        sh 'npm run test'
-                    }
-                }
-            }
-        }
 
         stage('Deploy') {
             steps {
@@ -36,21 +16,9 @@ pipeline {
                 script {
                     sh 'echo Pushing to docker hub...'
 
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                        dockerImage.push('latest')
-                    }
-
-                    sh 'echo Getting lastest image version on server...'
-
-                    withCredentials([usernamePassword(credentialsId: 'digitalocean', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        def remote = [:]
-                        remote.name = 'otto-server'
-                        remote.host = '128.199.43.48'
-                        remote.user = USERNAME
-                        remote.password = PASSWORD
-                        remote.allowAnyHosts = true
-                        sshScript remote: remote, script: 'jenkins/scripts/updateDockerContainer.sh'
+                    sshagent(credentials : ['bartrcashEC2']) {
+                                sh 'ssh -o StrictHostKeyChecking=no user@ec2-52-90-133-116.compute-1.amazonaws.com uptime'
+                                sh 'ssh -v user@ec2-52-90-133-116.compute-1.amazonaws.com'
                     }
                 }
             }
