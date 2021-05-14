@@ -16,7 +16,7 @@ pipeline {
                     sh 'echo Pushing to docker hub...'
 
                     sshagent (credentials: ['bartrcashEC2']) {
-                        sh 'ssh -o StrictHostKeyChecking=no -l cloudbees ec2-52-90-133-116.compute-1.amazonaws.com uname -a'
+                        sh 'ssh -o StrictHostKeyChecking=no -l ubuntu ec2-52-90-133-116.compute-1.amazonaws.com uname -a'
                     }
 
                     // sshagent(credentials : ['bartrcashEC2']) {
