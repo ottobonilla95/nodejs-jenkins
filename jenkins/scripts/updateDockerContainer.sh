@@ -66,5 +66,6 @@
 
 
 echo "Holaaa..."
+cd /var
 sudo pwd
 sudo ls
